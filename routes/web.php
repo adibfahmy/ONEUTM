@@ -56,8 +56,6 @@ Route::middleware('auth')->group(function() {
     // Route to store the new product
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
 
-
-
 });
 
 require __DIR__.'/auth.php';

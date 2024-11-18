@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
                 <div class="text-zinc-500 space-x-4">
-                  <a href="" class="text-primary">Home</a>
+                  <a href="{{ url('/test') }}" class="text-primary">Home</a>
                   <a href="" class="hover:text-primary">More</a>
                   <a href="" class="hover:text-primary">About</a>
                 </div>
