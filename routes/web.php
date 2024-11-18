@@ -10,6 +10,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function() {
+    return view('index');
+});
+
 // Route to display the catalog items
 Route::get('/marketplace/catalog', [CatalogController::class, 'index'])->name('marketplace.index');
 // Route to display the "Add Product" form
