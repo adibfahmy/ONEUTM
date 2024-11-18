@@ -8,18 +8,33 @@
     </head>
     <body class="antialiased">
         <!-- Header and navigation -->
-        <div class="rounded text-black bg-gray-100 border-gray-50 border-4 h-16 flex items-center px-4 w-full">
-            <p class="font-mono text-2xl px-4 py-3 mr-10">ONEUTM</p>
-            <button class="px-4 py-2 text-black rounded hover:bg-white">Parcel Pickup</button>
-            <button class="px-4 py-2 text-black rounded hover:bg-white">Market Place</button>
-            <button class="px-4 py-2 text-blue-500 rounded hover:bg-white ml-auto">Login/Register</button>
-        </div>
+        <nav class="flex justify-between flex-row p-3  border-b border-gray-300 shadow-sm ">
+            <!-- Left Section -->
+            <div class="flex items-center">
+                <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
+                <div class="text-zinc-500 space-x-4">
+                  <a href="" class="text-primary">Home</a>
+                  <a href="" class="hover:text-primary">More</a>
+                  <a href="" class="hover:text-primary">About</a>
+                </div>
+            </div>
+
+            <!-- Right Section -->
+            <div class="text-secondary inline-flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-user">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              </svg>
+              <span class="mx-1 text-md">Profile</span>
+            </div>
+        </nav>
 
         <div class="container mx-auto px-4 py-8">
             <p class="font-mono text-2xl font-bold mb-6">Add Product</p>
 
             <!-- Product Add Form -->
-            <form action="{{ route('marketplace.store') }}" method="POST">
+            <form action="{{ route('marketplace.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="name" class="block text-gray-700">Name</label>
@@ -32,8 +47,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label for="image_url" class="block text-gray-700">Image URL</label>
-                    <input type="url" name="image_url" id="image_url" class="w-full p-2 border border-gray-300 rounded" required>
+                    <label for="image" class="block text-gray-700">Upload Image</label>
+                    <input type="file" name="image" id="image" class="w-full p-2 border border-gray-300 rounded" accept="image/*" required>
                 </div>
 
                 <div class="mb-4">

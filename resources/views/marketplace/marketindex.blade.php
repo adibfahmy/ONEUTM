@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
                 <div class="text-zinc-500 space-x-4">
-                  <a href="" class="text-primary">Homee</a>
+                  <a href="{{ route ('index') }}" class="text-primary">Home</a>
                   <a href="" class="hover:text-primary">More</a>
                   <a href="" class="hover:text-primary">About</a>
                 </div>
@@ -31,14 +31,21 @@
         </nav>
 
         <div class="container mx-auto px-4 py-8">
-            <p class="font-bold text-2xl font-bold mb-6">Items</p>
-
+            <!-- Header Row -->
+            <div class="flex items-center justify-between mb-6">
+                <!-- "Items" Heading -->
+                <p class="font-bold text-2xl">Items</p>
+        
+                <!-- Add Product Button -->
+                <a href="{{ route('marketplace.create') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Add a Product
+                </a>
+            </div>
+        
             @if($items->isEmpty())
                 <!-- Show Add Product Button if catalog is empty -->
                 <div class="text-center py-4">
-                    <a href="{{ route('marketplace.create') }}" class="px-6 py-3 bg-green-500 text-white rounded hover:bg-green-600">
-                        Add a Product
-                    </a>
+                    <p class="font-bold text-2xl">Catalog is Empty.....</p>
                 </div>
             @else
                 <!-- Display catalog items if available -->
@@ -49,7 +56,7 @@
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold">{{ $item->name }}</h3>
                                 <p class="text-gray-600">{{ $item->description }}</p>
-                                <p class="text-xl font-bold">${{ $item->price }}</p>
+                                <p class="text-xl font-bold">RM{{ $item->price }}</p>
                                 <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View Details</button>
                             </div>
                         </div>
@@ -57,6 +64,7 @@
                 </div>
             @endif
         </div>
+        
 
     </body>
 </html>
