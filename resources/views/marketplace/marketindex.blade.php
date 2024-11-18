@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
                 <div class="text-zinc-500 space-x-4">
-                  <a href="{{ route ('index') }}" class="text-primary">Home</a>
+                  <a href="" class="text-primary">Home</a>
                   <a href="" class="hover:text-primary">More</a>
                   <a href="" class="hover:text-primary">About</a>
                 </div>
@@ -37,7 +37,7 @@
                 <p class="font-bold text-2xl">Items</p>
         
                 <!-- Add Product Button -->
-                <a href="{{ route('marketplace.create') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                <a href="{{ route('marketplace.marketcreate') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
                     Add a Product
                 </a>
             </div>
