@@ -14,12 +14,6 @@ Route::get('/test', function() {
     return view('index');
 });
 
-// Route to display the catalog items
-Route::get('/marketplace/catalog', [CatalogController::class, 'index'])->name('marketplace.index');
-// Route to display the "Add Product" form
-Route::get('/marketplace/product/create', [CatalogController::class, 'create'])->name('marketplace.create');
-// Route to store the new product
-Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -51,6 +45,19 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/accept', [ParcelController::class, 'acceptOrder'])->name('parcel.acceptOrder');
     Route::get('/parcel/{parcel}/track', [ParcelController::class, 'track'])->name('parcel.track');
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
+});
+
+Route::middleware('auth')->group(function() {
+
+    // Route to display the catalog items
+    Route::get('/marketplace/catalog', [CatalogController::class, 'index'])->name('marketplace.index');
+    // Route to display the "Add Product" form
+    Route::get('/marketplace/product/create', [CatalogController::class, 'create'])->name('marketplace.create');
+    // Route to store the new product
+    Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
+
+
+
 });
 
 require __DIR__.'/auth.php';
