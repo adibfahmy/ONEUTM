@@ -1,4 +1,27 @@
-<x-app-layout>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="icon.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    @vite('resources/css/app.css')
+
+</head>
+
+<body>
+    @include('partials.header')
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -160,202 +183,6 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</body>
 
-
-
-
-{{-- <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="text-2xl font-bold mb-4">Track Parcel</h2>
-
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Tracking Number</h3>
-                            <p class="text-gray-600">{{ $parcel->tracking_number }}</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Current Status</h3>
-                            <p class="text-gray-600">{{ ucfirst(str_replace('_', ' ', $parcel->status)) }}</p>
-                        </div>
-
-                        <div class="relative">
-                            <div class="flex items-center justify-between mb-8">
-                                <div class="w-full flex items-center">
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ $parcel->status != 'pending' ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Pending</div>
-                                    </div>
-                                    <div class="flex-1 h-1 bg-{{ $parcel->status != 'pending' ? 'green' : 'gray' }}-300"></div>
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ in_array($parcel->status, ['picked_up', 'out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Picked Up</div>
-                                    </div>
-                                    <div class="flex-1 h-1 bg-{{ in_array($parcel->status, ['out_for_delivery', 'delivered']) ? 'green' : 'gray' }}-300"></div>
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ in_array($parcel->status, ['out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }} ">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 0c-2.8 0-5 2.2-5 5v3h10v-3c0-2.8-2.2-5-5-5z"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Out for Delivery</div>
-                                    </div>
-                                    <div class="flex-1 h-1 bg-{{ $parcel->status == 'delivered' ? 'green' : 'gray' }}-300"></div>
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ $parcel->status == 'delivered' ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Delivered</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if ($parcel->status == 'Pending')
-                            <form action="{{ route('parcel.pickup', $parcel->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Pick Up
-                                </button>
-                            </form>
-                        @elseif ($parcel->status == 'Picked Up')
-                            <form action="{{ route('parcel.deliver', $parcel->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    Out for Delivery
-                                </button>
-                            </form>
-                        @elseif ($parcel->status == 'Out for Delivery')
-                            <form action="{{ route('parcel.deliver', $parcel->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Mark as Delivered
-                                </button>
-                            </form>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
-
-{{-- <x-app-layout>
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    <h2 class="text-2xl font-bold mb-4">Track Parcel</h2>
-
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <!-- Parcel Information -->
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Tracking Number</h3>
-                            <p class="text-gray-600">{{ $parcel->tracking_number }}</p>
-                        </div>
-
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Current Status</h3>
-                            <p class="text-gray-600">{{ ucfirst(str_replace('_', ' ', $parcel->status)) }}</p>
-                        </div>
-
-                        <!-- Tracking Progress Bar -->
-                        <div class="relative">
-                            <div class="flex items-center justify-between mb-8">
-                                <div class="w-full flex items-center">
-                                    <!-- Pending Step -->
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ $parcel->status != 'pending' ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Pending</div>
-                                    </div>
-                                    <div class="flex-1 h-1 {{ $parcel->status != 'pending' ? 'bg-green-300' : 'bg-gray-300' }}"></div>
-                                    <!-- Picked Up Step -->
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ in_array($parcel->status, ['picked_up', 'out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Picked Up</div>
-                                    </div>
-                                    <div class="flex-1 h-1 {{ in_array($parcel->status, ['out_for_delivery', 'delivered']) ? 'bg-green-300' : 'bg-gray-300' }}"></div>
-                                    <!-- Out for Delivery Step -->
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ in_array($parcel->status, ['out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 0c-2.8 0-5 2.2-5 5v3h10v-3c0-2.8-2.2-5-5-5z"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Out for Delivery</div>
-                                    </div>
-                                    <div class="flex-1 h-1 {{ $parcel->status == 'delivered' ? 'bg-green-300' : 'bg-gray-300' }}"></div>
-                                    <!-- Delivered Step -->
-                                    <div class="relative flex flex-col items-center">
-                                        <div class="rounded-full h-12 w-12 flex items-center justify-center
-                                            {{ $parcel->status == 'delivered' ? 'bg-green-500' : 'bg-gray-300' }}">
-                                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4"></path>
-                                            </svg>
-                                        </div>
-                                        <div class="text-center mt-2">Delivered</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        @if ($parcel->status === 'pending')
-                            <form action="{{ route('parcel.acceptOrder', $parcel->id) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Accept Order
-                                </button>
-                            </form>
-                        @elseif ($parcel->status === 'picked_up')
-                            <form action="{{ route('parcel.updateStatus', $parcel->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="status" value="out_for_delivery">
-                                <button type="submit" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    Out for Delivery
-                                </button>
-                            </form>
-                        @elseif ($parcel->status === 'out_for_delivery')
-                            <form action="{{ route('parcel.delete', $parcel->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Mark as Delivered
-                                </button>
-                            </form>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</x-app-layout> --}}
+</html>
