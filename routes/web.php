@@ -61,6 +61,14 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/marketplace/{id}', [CatalogController::class, 'show'])->name('marketplace.marketshow');
 
+    Route::get('/marketplace', [CatalogController::class, 'search'])->name('marketplace.marketindex');
+
+    // Route to clear search and go back to the index page
+    Route::get('/marketplace/clearsearch', [CatalogController::class, 'clearSearch'])->name('marketplace.clearsearch');
+
+
+
+
 
 });
 
