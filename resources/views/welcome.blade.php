@@ -66,7 +66,7 @@
                         </svg></i>
                 </div>
                 <div>
-                    <h2 class="text-xl text-primary font-semibold mb-1">Marketplace</h2>
+                    <a href="{{ route('marketplace.marketindex') }}"class="text-xl text-primary font-semibold mb-1">Marketplace</a>
                     <p class="text-gray-600 text-sm text-justify">
                         Your one-stop shop for everything you need. Discover a wide range of products and services from
                         trusted sellers, all in one convenient place.
