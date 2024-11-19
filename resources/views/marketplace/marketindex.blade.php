@@ -58,6 +58,14 @@
                                 <p class="text-gray-600">{{ $item->description }}</p>
                                 <p class="text-xl font-bold">RM{{ $item->price }}</p>
                                 <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">View Details</button>
+
+                                <form action="{{ route('marketplace.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @endforeach

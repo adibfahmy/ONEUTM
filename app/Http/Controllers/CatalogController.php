@@ -48,4 +48,13 @@ class CatalogController extends Controller
         return redirect()->route('marketplace.marketindex')->with('success', 'Product added successfully!');
     }
 
+    // Delete an item from the catalog
+    public function destroy($id)
+    {
+        $item = CatalogItem::findOrFail($id); // Find the item by ID
+        $item->delete(); // Delete the item from the database
+
+        return redirect()->route('marketplace.marketindex')->with('success', 'Item deleted successfully!');
+    }
+
 }

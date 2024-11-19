@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/marketplace/product/create', [CatalogController::class, 'create'])->name('marketplace.marketcreate');
     // Route to store the new product
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
+    // Route to delete a product
+    Route::delete('/marketplace/product/{id}', [CatalogController::class, 'destroy'])->name('marketplace.destroy');
 
 });
 
