@@ -5,6 +5,7 @@ namespace App\Http\Controllers;  // Correct namespace
 use App\Models\CatalogItem;
 use Illuminate\Http\Request;
 
+
 class CatalogController extends Controller
 {
     // Show the list of catalog items
@@ -63,5 +64,26 @@ class CatalogController extends Controller
         return view('marketplace.marketshow', compact('item'));
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('search');
+
+        // Fetch all items or filter by search query
+        $items = CatalogItem::when($query, function ($queryBuilder, $query) {
+            $queryBuilder->where('name', 'LIKE', "%$query%")
+                        ->orWhere('description', 'LIKE', "%$query%");
+        })->get();
+
+        // Return the view with items
+        return view('marketplace.marketindex', compact('items'));
+    }
+
+    public function clearSearch()
+    {
+        // Simply redirect back to the market index (show all items)
+        return redirect()->route('marketplace.marketindex');
+    }
+
+    
 
 }

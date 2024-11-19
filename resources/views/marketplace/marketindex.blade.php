@@ -15,11 +15,38 @@
             <div class="flex items-center justify-between mb-6">
                 <!-- "Items" Heading -->
                 <p class="font-bold text-2xl">Items</p>
-        
-                <!-- Add Product Button -->
-                <a href="{{ route('marketplace.marketcreate') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-                    Add a Product
-                </a>
+            
+                <!-- Search and Add Product -->
+                <div class="flex space-x-4">
+                    <!-- Search Bar -->
+                    <<form action="{{ route('marketplace.marketindex') }}" method="GET" class="flex items-center">
+                        <input 
+                            type="text" 
+                            name="search" 
+                            placeholder="Search items..." 
+                            class="px-4 py-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value="{{ request('search') }}"
+                        >
+                        <button 
+                            type="submit" 
+                            class="px-4 py-2 bg-blue-500 text-white rounded-r-md hover:bg-blue-600"
+                        >
+                            Search
+                        </button>
+                        
+                        <!-- Clear Search Button -->
+                        @if(request('search'))
+                            <a href="{{ route('marketplace.marketindex') }}" class="ml-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600">
+                                Clear Search
+                            </a>
+                        @endif
+                    </form>
+            
+                    <!-- Add Product Button -->
+                    <a href="{{ route('marketplace.marketcreate') }}" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                        Add a Product
+                    </a>
+                </div>
             </div>
         
             @if($items->isEmpty())
@@ -54,10 +81,11 @@
                             <!-- Action Buttons -->
                             <div class="flex space-x-4 mb-6 text-sm font-medium">
                                 <div class="flex-auto flex space-x-4">
-                                    <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="button">Buy now</button>
-                                    <a href="{{ route('marketplace.marketshow', $item->id) }}" class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900">
+                                    {{-- <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="button">Buy now</button> --}}
+                                    <a href="{{ route('marketplace.marketshow', $item->id) }}" class="h-10 px-6 font-semibold rounded-md border bg-blue-500 border-slate-200 text-white flex items-center justify-center">
                                         Details
                                     </a>
+                                    
                                 </div>
                                 <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
                                     <svg width="20" height="20" fill="currentColor" aria-hidden="true">
