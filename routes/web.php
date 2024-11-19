@@ -7,18 +7,18 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ParcelController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/test', function () {
+    return view('index') ;
+})->name('home');
 
-Route::get('/test', function() {
-    return view('index');
-});
+// Route::get('/test', function() {
+//     return view('index');
+// });
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     // return view('index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
