@@ -13,7 +13,7 @@
             <div class="flex items-center">
                 <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
                 <div class="text-zinc-500 space-x-4">
-                  <a href="{{ url('/test') }}" class="text-primary">Home</a>
+                  <a href="/dashboard" class="text-primary">Home</a>
                   <a href="" class="hover:text-primary">More</a>
                   <a href="" class="hover:text-primary">About</a>
                 </div>
@@ -26,7 +26,7 @@
                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
               </svg>
-              <span class="mx-1 text-md">Profile</span>
+              <a href="{{ route('profile.edit') }}">Profile</a>
             </div>
         </nav>
 
