@@ -59,6 +59,9 @@ Route::middleware('auth')->group(function() {
     // Route to delete a product
     Route::delete('/marketplace/product/{id}', [CatalogController::class, 'destroy'])->name('marketplace.destroy');
 
+    Route::get('/marketplace/{id}', [CatalogController::class, 'show'])->name('marketplace.marketshow');
+
+
 });
 
 require __DIR__.'/auth.php';

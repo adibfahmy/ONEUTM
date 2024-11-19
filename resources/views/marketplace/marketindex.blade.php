@@ -55,7 +55,9 @@
                             <div class="flex space-x-4 mb-6 text-sm font-medium">
                                 <div class="flex-auto flex space-x-4">
                                     <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="button">Buy now</button>
-                                    <button class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900" type="button">Details</button>
+                                    <a href="{{ route('marketplace.marketshow', $item->id) }}" class="h-10 px-6 font-semibold rounded-md border border-slate-200 text-slate-900">
+                                        Details
+                                    </a>
                                 </div>
                                 <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
                                     <svg width="20" height="20" fill="currentColor" aria-hidden="true">

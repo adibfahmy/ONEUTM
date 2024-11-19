@@ -57,4 +57,11 @@ class CatalogController extends Controller
         return redirect()->route('marketplace.marketindex')->with('success', 'Item deleted successfully!');
     }
 
+    public function show($id)
+    {
+        $item = CatalogItem::findOrFail($id); // Adjust `CatalogItem` to your model name
+        return view('marketplace.marketshow', compact('item'));
+    }
+
+
 }
