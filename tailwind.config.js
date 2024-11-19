@@ -12,14 +12,18 @@ export default {
     theme: {
         extend: {
             fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 sans: ["Montserrat", "sans-serif"],
             },
 
-            colors: {
+            backgroundColor: {
+                tertiary: '#7A8DA5',
                 primary: '#252B42',
                 secondary: '#23A6F0',
                 redIconColor: "#E74040"
             }
         },
     },
-}
+
+    plugins: [forms],
+};
