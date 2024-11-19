@@ -52,7 +52,7 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     @foreach($items as $item)
                         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
+                            <img src="{{ asset($item->image_url) }}" alt="{{ $item->name }}" class="w-full h-48 object-cover">
                             <div class="p-4">
                                 <h3 class="text-lg font-semibold">{{ $item->name }}</h3>
                                 <p class="text-gray-600">{{ $item->description }}</p>
