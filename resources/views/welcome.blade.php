@@ -26,7 +26,7 @@
     <nav class="flex justify-between flex-row p-3 border-b border-gray-300 shadow-sm">
         <!-- Left Section -->
         <div class="flex items-center">
-            <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONE   UTM</h5>
+            <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONE UTM</h5>
             <div class="text-zinc-500 space-x-4">
                 <a href="/dashboard" class="text-primary">Home</a>
                 <a href="" class="hover:text-primary">More</a>
@@ -66,7 +66,8 @@
                         </svg></i>
                 </div>
                 <div>
-                    <a href="{{ route('marketplace.marketindex') }}"class="text-xl text-primary font-semibold mb-1">Marketplace</a>
+                    <a
+                        href="{{ route('marketplace.marketindex') }}"class="text-xl text-primary font-semibold mb-1">Marketplace</a>
                     <p class="text-gray-600 text-sm text-justify">
                         Your one-stop shop for everything you need. Discover a wide range of products and services from
                         trusted sellers, all in one convenient place.
@@ -76,31 +77,34 @@
 
             <!-- Parcel Pickup -->
             <div class="flex items-start space-x-4">
-                <div class="bg-redIconColor p-3 rounded-lg">
-                    <i class="text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-packages">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
-                            <path d="M2 13.5v5.5l5 3" />
-                            <path d="M7 16.545l5 -3.03" />
-                            <path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
-                            <path d="M12 19l5 3" />
-                            <path d="M17 16.5l5 -3" />
-                            <path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5" />
-                            <path d="M7 5.03v5.455" />
-                            <path d="M12 8l5 -3" />
-                        </svg>
-                    </i>
-                </div>
-                <div>
-                    <h2 class="text-xl text-primary font-semibold mb-1">Parcel Pickup</h2>
-                    <p class="text-gray-600 text-sm text-justify">
-                        Conveniently pick up your packages at your preferred location. No more missed deliveries or long
-                        wait times.
-                    </p>
-                </div>
+                <a href="{{ route('parcel.service') }}" class="flex items-start space-x-4">
+                    <div class="bg-redIconColor p-3 rounded-lg">
+                        <i class="text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-packages">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M7 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                                <path d="M2 13.5v5.5l5 3" />
+                                <path d="M7 16.545l5 -3.03" />
+                                <path d="M17 16.5l-5 -3l5 -3l5 3v5.5l-5 3z" />
+                                <path d="M12 19l5 3" />
+                                <path d="M17 16.5l5 -3" />
+                                <path d="M12 13.5v-5.5l-5 -3l5 -3l5 3v5.5" />
+                                <path d="M7 5.03v5.455" />
+                                <path d="M12 8l5 -3" />
+                            </svg>
+                        </i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl text-primary font-semibold mb-1">Parcel Pickup</h2>
+                        <p class="text-gray-600 text-sm text-justify">
+                            Conveniently pick up your packages at your preferred location. No more missed deliveries or
+                            long wait times.
+                        </p>
+                    </div>
+                </a>
             </div>
 
             <!-- Laundry Services -->
