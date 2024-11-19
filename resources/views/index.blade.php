@@ -79,7 +79,8 @@
                 </i>
             </div>
             <div>
-                <h2 class="text-xl text-primary font-semibold mb-1">Parcel Pickup</h2>
+                <a href="{{ route('parcel.service') }}"
+                    class="text-xl text-primary font-semibold mb-1">Parcel Pickup</a>
                 <p class="text-gray-600 text-sm text-justify">
                     Conveniently pick up your packages at your preferred location. No more missed deliveries or long
                     wait times.
