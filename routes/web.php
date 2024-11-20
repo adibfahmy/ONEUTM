@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/accept', [ParcelController::class, 'acceptOrder'])->name('parcel.acceptOrder');
     Route::get('/parcel/{parcel}/track', [ParcelController::class, 'track'])->name('parcel.track');
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
+    Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
+
 });
 
 Route::middleware('auth')->group(function() {

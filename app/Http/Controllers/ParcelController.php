@@ -39,16 +39,23 @@ class ParcelController extends Controller
         $validated['picked_up_by_user_id'] = Auth::id();
         $validated['status'] = 'pending';
 
-        Parcel::create($validated);
+        Parcel::create([
+            'user_id' => Auth::id(),
+            'tracking_number' => $request->tracking_number,
+            'pickup_point' => $request->pickup_point,
+            'phone_number' => $request->phone_number,
+            'delivery_address' => $request->delivery_address,
+            'status' => 'Pending',
+        ]);
 
-        return redirect()->route('parcels.index')
-            ->with('success', 'Parcel pickup request created successfully.');
+        return redirect()->route('parcel.myParcels')->with('success', 'Pickup request created successfully.');
     }
 
     public function track($id)
     {
         $parcel = Parcel::findOrFail($id);
         return view('parcels.track', compact('parcel'));
+
     }
 
     public function pickup(Parcel $parcel)
@@ -142,4 +149,11 @@ class ParcelController extends Controller
         // Pass data to the service view
         return view('parcels.service', compact('pendingCount', 'inTransitCount', 'deliveredToday'));
     }
+
+    public function myParcels()
+    {
+        $userParcels = Parcel::where('user_id', Auth::id())->get();
+        return view('parcels.myParcel', compact('userParcels'));
+    }
+
 }
