@@ -18,9 +18,13 @@
     @vite('resources/css/app.css')
 
 </head>
-<body>
+<body class="bg-tertiary text-gray-900">
 
-    @include('partials.header')
+
+    <header class="bg-white">
+        @include('partials.header')
+    </header>
+
     <div class="container mx-auto px-4 py-6">
         <!-- Welcome Message -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
