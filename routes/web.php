@@ -15,7 +15,6 @@ Route::get('/', function () {
 //     return view('index');
 // });
 
-
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
