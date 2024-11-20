@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ParcelController;
+use Illuminate\Support\Facades\Broadcast;
 
 
 Route::get('/', function () {
@@ -58,5 +59,17 @@ Route::middleware('auth')->group(function() {
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
 
 });
+
+Route::get('/chat', function () {
+    return view('chat');
+})->name('chat.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard.index');
+
+
+
+
 
 require __DIR__.'/auth.php';
