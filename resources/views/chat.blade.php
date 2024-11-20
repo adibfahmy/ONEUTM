@@ -19,20 +19,8 @@
 </head>
 <body class="bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="flex justify-between flex-row p-3 border-b border-gray-300 shadow-sm">
-        <div class="flex items-center">
-            <h5 class="text-primary font-bold text-2xl mr-0 lg:mr-32">ONEUTM</h5>
-            <div class="text-zinc-500 space-x-4">
-                <a href="{{ route('dashboard.index') }}" class="text-primary">Home</a>
-                <a href="#" class="hover:text-primary">More</a>
-                <a href="#" class="hover:text-primary">About</a>
-            </div>
-        </div>
-        <div class="text-secondary inline-flex items-center">
-            <a href="{{ route('profile.edit') }}">Profile</a>
-        </div>
-    </nav>
+   @include('partials.head')
+   @include('partials.header')
 
     <!-- Chat Container -->
     <div class="flex flex-col h-screen">
