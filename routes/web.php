@@ -9,16 +9,15 @@ use Illuminate\Support\Facades\Broadcast;
 
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index') ;
+})->name('home');
 
-Route::get('/test', function() {
-    return view('index');
-});
-
+// Route::get('/test', function() {
+//     return view('index');
+// });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -47,6 +46,8 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/accept', [ParcelController::class, 'acceptOrder'])->name('parcel.acceptOrder');
     Route::get('/parcel/{parcel}/track', [ParcelController::class, 'track'])->name('parcel.track');
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
+    Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
+
 });
 
 Route::middleware('auth')->group(function() {
@@ -57,6 +58,22 @@ Route::middleware('auth')->group(function() {
     Route::get('/marketplace/product/create', [CatalogController::class, 'create'])->name('marketplace.marketcreate');
     // Route to store the new product
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
+    // Route to delete a product
+    Route::delete('/marketplace/product/{id}', [CatalogController::class, 'destroy'])->name('marketplace.destroy');
+
+    Route::get('/marketplace/{id}', [CatalogController::class, 'show'])->name('marketplace.marketshow');
+
+    Route::get('/marketplace', [CatalogController::class, 'search'])->name('marketplace.marketindex');
+
+    // Route to clear search and go back to the index page
+    Route::get('/marketplace/clearsearch', [CatalogController::class, 'clearSearch'])->name('marketplace.clearsearch');
+
+    Route::get('/marketplace/{id}/edit', [CatalogController::class, 'edit'])->name('marketplace.marketedit');
+
+    Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
+
+
+
 
 });
 

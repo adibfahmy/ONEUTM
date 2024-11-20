@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
 
 class ParcelController extends Controller
 {
     use AuthorizesRequests;
+
     public function index()
     {
-        $parcels = Parcel::with(relations: 'user')
-        ->where('user_id', '!=', Auth::id()) // Exclude parcels where user_id is the authenticated user's ID
-        ->latest()
-        ->paginate(10); // Paginate the result
+        $parcels = Parcel::with('user')
+            ->where('user_id', '!=', Auth::id()) // Exclude parcels where user_id is the authenticated user's ID
+            ->latest()
+            ->paginate(10); // Paginate the result
         return view('parcels.index', compact('parcels'));
     }
 
@@ -38,17 +39,23 @@ class ParcelController extends Controller
         $validated['picked_up_by_user_id'] = Auth::id();
         $validated['status'] = 'pending';
 
-        Parcel::create($validated);
+        Parcel::create([
+            'user_id' => Auth::id(),
+            'tracking_number' => $request->tracking_number,
+            'pickup_point' => $request->pickup_point,
+            'phone_number' => $request->phone_number,
+            'delivery_address' => $request->delivery_address,
+            'status' => 'Pending',
+        ]);
 
-        return redirect()->route('parcels.index')
-            ->with('success', 'Parcel pickup request created successfully.');
+        return redirect()->route('parcel.myParcels')->with('success', 'Pickup request created successfully.');
     }
 
     public function track($id)
     {
-        // $this->authorize('view', $parcel);
         $parcel = Parcel::findOrFail($id);
         return view('parcels.track', compact('parcel'));
+
     }
 
     public function pickup(Parcel $parcel)
@@ -68,8 +75,6 @@ class ParcelController extends Controller
 
     public function updateStatus(Parcel $parcel, Request $request)
     {
-        // $this->authorize('update', $parcel);
-
         $validated = $request->validate([
             'status' => 'required|in:out_for_delivery,delivered',
         ]);
@@ -84,126 +89,71 @@ class ParcelController extends Controller
         return back()->with('success', 'Parcel status updated successfully.');
     }
 
-    // public function available()
-    // {
-    //     $parcels = Parcel::where('status', 'pending')
-    //         ->latest()
-    //         ->paginate(10);
+    public function delete(Parcel $parcel)
+    {
+        if ($parcel->status === 'out_for_delivery') {
+            $parcel->delete();
+            return redirect()->route('parcel.index')->with('success', 'Parcel successfully delivered and removed.');
+        }
 
-    //     return view('parcels.available', compact('parcels'));
-    // }
-//     public function acceptOrder(Parcel $parcel)
-// {
-//     if ($parcel->status !== 'pending') {
-//         return back()->with('error', 'Order is not available for acceptance.');
-//     }
-
-//     $parcel->update(['status' => 'picked_up']);
-//     return back()->with('success', 'You have accepted the order for delivery.');
-// }
-
-public function delete(Parcel $parcel)
-{
-    if ($parcel->status === 'out_for_delivery') {
-        $parcel->delete();
-        return redirect()->route('parcel.index')->with('success', 'Parcel successfully delivered and removed.');
+        return back()->with('error', 'Parcel cannot be deleted until it is out for delivery.');
     }
 
-    return back()->with('error', 'Parcel cannot be deleted until it is out for delivery.');
-}
-
-// public function markAsPickedUp(Parcel $parcel)
-// {
-//     // Ensure only pending parcels can be picked up
-//     if ($parcel->status == 'pending') {
-//         $parcel->update(['status' => 'picked_up']);
-//     }
-
-//     return redirect()->route('parcels.index')->with('success', 'Parcel status updated to picked up.');
-// }
-
-
-public function service()
-{
-    return view('parcels.service');
-}
-
-
-// public function pickedup(Parcel $parcel)
-// {
-//     if ($parcel->status !== 'pending') {
-//         return back()->with('error', 'This parcel is no longer available for pickup.');
-//     }
-
-//     $parcel->update([
-//         'deliverer_id' => Auth::id(),
-//         'status' => 'picked_up',
-//         'picked_up_at' => now(),
-//     ]);
-
-//     return back()->with('success', 'You have successfully picked up this parcel.');
-// }
-
-
-// public function updatedStatus(Request $request, $parcelId)
-// {
-//     // Find the parcel by ID
-//     $parcel = Parcel::findOrFail($parcelId);
-
-//     // Update the parcel's status based on the form submission
-//     $parcel->status = $request->input('status');
-
-//     // Save the changes
-//     $parcel->save();
-
-//     // Redirect back with a success message
-//     return redirect()->route('parcel.track', $parcelId)->with('success', 'Status updated!');
-// }
-
-public function destroy($id)
-{
-    Parcel::findOrFail($id)->delete();
-    return redirect()->route('parcels.index')->with('success', 'Parcel tracking has been deleted.');
-}
-
-// app/Http/Controllers/ParcelController.php
-
-public function acceptOrder(Parcel $parcel)
-{
-    // Ensure the parcel is still pending before accepting
-    if ($parcel->status !== 'pending') {
-        return back()->with('error', 'This parcel is no longer available for acceptance.');
+    public function destroy($id)
+    {
+        Parcel::findOrFail($id)->delete();
+        return redirect()->route('parcels.index')->with('success', 'Parcel tracking has been deleted.');
     }
 
-    // Assign the deliverer and keep the status as 'pending'
-    $parcel->update([
-        'deliverer_id' => Auth::id(),
-        'status' => 'pending', // Status stays 'pending' until picked up
-    ]);
+    public function acceptOrder(Parcel $parcel)
+    {
+        if ($parcel->status !== 'pending') {
+            return back()->with('error', 'This parcel is no longer available for acceptance.');
+        }
 
-    return redirect()->route('parcel.track', $parcel)->with('success', 'You have accepted the order.');
-}
+        $parcel->update([
+            'deliverer_id' => Auth::id(),
+            'status' => 'pending', // Status stays 'pending' until picked up
+        ]);
 
-// app/Http/Controllers/ParcelController.php
-
-// app/Http/Controllers/ParcelController.php
-
-public function cancelOrder($parcelId)
-{
-    $parcel = Parcel::find($parcelId);
-
-    if ($parcel && $parcel->deliverer_id === auth()->id() && $parcel->status === 'picked_up') {
-        // Change status back to 'pending'
-        $parcel->status = 'pending';
-        $parcel->save();
-
-        // Optionally, you can redirect to the available parcels page
-        return redirect()->route('parcels.index')
-                         ->with('success', 'Parcel order has been canceled and is available for others.');
+        return redirect()->route('parcel.track', $parcel)->with('success', 'You have accepted the order.');
     }
 
-    return back()->with('error', 'You cannot cancel this order.');
-}
+    public function cancelOrder($parcelId)
+    {
+        $parcel = Parcel::find($parcelId);
 
+        if ($parcel && $parcel->deliverer_id === auth()->id() && $parcel->status === 'picked_up') {
+            $parcel->status = 'pending';
+            $parcel->save();
+
+            return redirect()->route('parcels.index')
+                ->with('success', 'Parcel order has been canceled and is available for others.');
+        }
+
+        return back()->with('error', 'You cannot cancel this order.');
+    }
+
+    /**
+     * Service method to display the quick stats page.
+     */
+    public function service()
+    {
+        // Calculate counts for quick stats
+        $pendingCount = Parcel::where('status', 'pending')->count();
+        $inTransitCount = Parcel::whereIn('status', ['picked_up', 'out_for_delivery'])->count();
+        $deliveredToday = Parcel::where('status', 'delivered')
+            ->whereDate('updated_at', Carbon::today())
+            ->count();
+
+        // Pass data to the service view
+        return view('parcels.service', compact('pendingCount', 'inTransitCount', 'deliveredToday'));
+    }
+
+    public function myParcels()
+    {
+        $userParcels = Parcel::where('user_id', Auth::id())->get();
+        return view('parcels.myParcel', compact('userParcels'));
+    }
 
 }

@@ -1,10 +1,23 @@
 {{-- resources/views/parcels/service.blade.php --}}
-<x-app-layout>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    @include('partials.head')
+</head>
+
+<body class="bg-tertiary text-gray-900">
+
+    <header class="bg-white">
+        @include('partials.header')
+    </header>
+
     <div class="container mx-auto px-4 py-6">
         <!-- Welcome Message -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h1 class="text-2xl font-bold mb-2">Welcome to ParcelPro!</h1>
-            <p class="text-gray-600">Conveniently pick up your packages at your preferred location. No more missed deliveries or long wait times.</p>
+            <p class="text-gray-600">Conveniently pick up your packages at your preferred location. No more missed
+                deliveries or long wait times.</p>
         </div>
 
         <!-- Quick Actions Cards -->
@@ -43,6 +56,23 @@
                 </a>
             </div>
 
+            <!-- My Parcel Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-semibold">My Parcels</h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10c0 1.104.896 2 2 2h14c1.104 0 2-.896 2-2V7c0-1.104-.896-2-2-2H5c-1.104 0-2 .896-2 2zm3 1h4v2H6V8zm0 4h4v2H6v-2zm6-4h4v6h-4V8z" />
+                    </svg>
+                </div>
+                <p class="text-gray-600 mb-4">View all your personal parcel requests.</p>
+                <a href="{{ route('parcel.myParcels') }}"
+                    class="inline-block w-full bg-indigo-500 text-white text-center py-2 px-4 rounded-lg hover:bg-indigo-600 transition duration-200">
+                    My Parcels
+                </a>
+            </div>
+
             <!-- Quick Stats Card -->
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <div class="flex items-center justify-between mb-4">
@@ -70,4 +100,6 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</body>
+
+</html>
