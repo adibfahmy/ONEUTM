@@ -19,7 +19,7 @@ class CreatelaundriesTable extends Migration
             $table->string('pickup_address');
             $table->string('delivery_address');
             $table->string('phone_number');
-            $table->enum('status', ['pending', 'in_process', 'completed'])->default('pending');
+            $table->enum('status', allowed: ['pending', 'picked_up', 'out_for_delivery', 'delivered'])->default('pending');
             $table->timestamp('pickup_time')->nullable();
             $table->timestamps();
 

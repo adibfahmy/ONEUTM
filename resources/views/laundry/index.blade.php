@@ -36,7 +36,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($laundry as $laundry)
+                                @foreach ($laundries as $laundry)
                                     <tr>
                                         <td class="border px-4 py-2">{{ $laundry->user->name }}</td>
                                         <td class="border px-4 py-2">{{ $laundry->pickup_point }}</td>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="mt-4">
-                        {{ $laundry->links() }}
+                        {{ $laundries->links() }}
                     </div>
                 </div>
             </div>
