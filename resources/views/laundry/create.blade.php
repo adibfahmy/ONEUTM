@@ -16,6 +16,15 @@
             <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg border border-gray-300">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2 class="text-2xl font-bold mb-4">Create Laundry Pickup Request</h2>
+                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
                     <form action="{{ route('laundry.store') }}" method="POST">
                         @csrf
