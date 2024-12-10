@@ -84,6 +84,42 @@ class CatalogController extends Controller
         return redirect()->route('marketplace.marketindex');
     }
 
-    
+    public function edit($id)
+    {
+        $item = CatalogItem::findOrFail($id);
+        return view('marketplace.marketedit', compact('item'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $item = CatalogItem::findOrFail($id);
+
+        // Validate the incoming data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        // Update the item's properties
+        $item->name = $request->input('name');
+        $item->description = $request->input('description');
+        $item->price = $request->input('price');
+
+        // Handle the image upload, if provided
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('catalog', 'public');
+            $item->image_url = $imagePath;
+        }
+
+        // Save the updated item to the database
+        $item->save();
+
+        // Redirect back to the catalog with a success message
+        return redirect()->route('marketplace.marketindex')->with('success', 'Item updated successfully!');
+    }
+
 
 }

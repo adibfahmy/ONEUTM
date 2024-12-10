@@ -29,6 +29,8 @@
                         <button class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Buy Now</button>
                         <a href="{{ route('marketplace.marketindex') }}"
                             class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Back to Catalog</a>
+                        <a href="{{ route('marketplace.marketedit', $item->id) }}"
+                            class="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Edit</a>
                     </div>
                 </div>
             </div>
