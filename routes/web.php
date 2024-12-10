@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ParcelController;
+use App\Http\Controllers\LaundryController;
 use Illuminate\Support\Facades\Broadcast;
 
 
@@ -77,13 +78,37 @@ Route::middleware('auth')->group(function() {
 
 });
 
+Route::middleware('auth')->group(function() {
+
+    Route::get('/laundry', [LaundryController::class, 'index'])->name('laundry.index');
+    Route::get('/laundry/track', [LaundryController::class, 'index'])->name('laundry.track');
+    Route::get('/laundry/create', [LaundryController::class, 'create'])->name('laundry.create');
+    Route::post('/laundry/store', [LaundryController::class, 'store'])->name('laundry.store');
+    Route::get('/laundry/track/{id}', [LaundryController::class, 'track'])->name('laundry.track');
+    Route::post('/laundry/pickup/{id}', [LaundryController::class, 'pickup'])->name('laundry.pickup');
+    Route::post('/laundry/deliver/{id}', [LaundryController::class, 'deliver'])->name('laundry.deliver');
+    Route::post('/laundry/{laundry}/accept-order', [LaundryController::class, 'acceptOrder'])->name('laundry.acceptOrder');
+    Route::delete('/laundry/{laundry}', [LaundryController::class, 'delete'])->name('laundry.delete');
+    Route::resource('laundry', LaundryController::class);
+    Route::post('/laundry/{laundry}/pickup', [LaundryController::class, 'pickup'])->name('laundry.pickup');
+    Route::post('/laundry/{laundry}/update-status', [LaundryController::class, 'updateStatus'])->name('laundry.updateStatus');
+    Route::get('/laundry-service', [LaundryController::class, 'service'])->name('laundry.service');
+    Route::delete('/laundry/{id}', [LaundryController::class, 'destroy'])->name('laundry.destroy');
+    Route::post('/laundry/{laundry}/cancel', [LaundryController::class, 'cancelOrder'])->name('laundry.cancelOrder');
+    Route::post('/laundry/{laundry}/accept', [LaundryController::class, 'acceptOrder'])->name('laundry.acceptOrder');
+    Route::get('/laundry/{laundry}/track', [LaundryController::class, 'track'])->name('laundry.track');
+    Route::post('/laundry/{laundry}/update-status', [LaundryController::class, 'updateStatus'])->name('laundry.updateStatus');
+    Route::get('/my-laundry', [LaundryController::class, 'myLaundry'])->name('laundry.myLaundry');
+});
+
+
 Route::get('/chat', function () {
     return view('chat');
 })->name('chat.index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard.index');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard.index');
 
 
 
