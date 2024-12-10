@@ -72,10 +72,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/marketplace/{id}/edit', [CatalogController::class, 'edit'])->name('marketplace.marketedit');
 
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
-
-
-
-
+ 
 });
 
 Route::middleware('auth')->group(function() {
