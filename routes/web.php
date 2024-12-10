@@ -72,10 +72,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/marketplace/{id}/edit', [CatalogController::class, 'edit'])->name('marketplace.marketedit');
 
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
-
-
-
-
+ 
 });
 
 Route::middleware('auth')->group(function() {
@@ -90,6 +87,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/laundry/{laundry}/accept-order', [LaundryController::class, 'acceptOrder'])->name('laundry.acceptOrder');
     Route::delete('/laundry/{laundry}', [LaundryController::class, 'delete'])->name('laundry.delete');
     Route::resource('laundry', LaundryController::class);
+
     Route::post('/laundry/{laundry}/pickup', [LaundryController::class, 'pickup'])->name('laundry.pickup');
     Route::post('/laundry/{laundry}/update-status', [LaundryController::class, 'updateStatus'])->name('laundry.updateStatus');
     Route::get('/laundry-service', [LaundryController::class, 'service'])->name('laundry.service');

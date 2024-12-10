@@ -23,7 +23,7 @@ class CatalogController extends Controller
     {
         return view('marketplace.marketcreate');  // Correct view path
     }
-
+ 
     // Store the new product in the database
     public function store(Request $request)
     {

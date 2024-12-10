@@ -27,10 +27,20 @@
 
                     <div class="bg-white p-6 rounded-lg shadow">
                         <!-- Laundry Order Information -->
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Laundry Order ID</h3>
-                            <p class="text-gray-600">{{ $laundry->id }}</p>
+
+
+                        <div class="flex">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold">Laundry Order ID</h3>
+                                <p class="text-gray-600">{{ $laundry->id }}</p>
+                            </div>
+                            <div class="mb-4 mx-10">
+                                <h3 class="text-lg font-semibold">Phone Number</h3>
+                                <p class="text-gray-600">{{ $laundry->phone_number }}</p>
+                            </div>
                         </div>
+
+
 
                         <div class="mb-4">
                             <h3 class="text-lg font-semibold">Current Status</h3>

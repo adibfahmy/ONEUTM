@@ -14,11 +14,11 @@ class LaundryController extends Controller
 
     public function index()
     {
-        $laundry = Laundry::with('user')
+        $laundries = Laundry::with('user')
             ->where('user_id', '!=', Auth::id()) // Exclude laundry where user_id is the authenticated user's ID
             ->latest()
             ->paginate(10); // Paginate the result
-        return view('laundry.index', compact('laundry'));
+        return view('laundry.index', compact('laundries'));
     }
 
     public function create()
@@ -62,6 +62,7 @@ class LaundryController extends Controller
         if ($laundry->status !== 'pending') {
             return back()->with('error', 'This laundry is no longer available for pickup.');
         }
+
 
         $laundry->update([
             'deliverer_id' => Auth::id(),

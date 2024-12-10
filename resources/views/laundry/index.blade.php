@@ -36,10 +36,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($laundry as $laundry)
+                                @foreach ($laundries as $laundry)
                                     <tr>
                                         <td class="border px-4 py-2">{{ $laundry->user->name }}</td>
-                                        <td class="border px-4 py-2">{{ $laundry->pickup_point }}</td>
+                                        <td class="border px-4 py-2">{{ $laundry->pickup_address }}</td>
                                         <td class="border px-4 py-2">{{ $laundry->phone_number }}</td>
                                         <td class="border px-4 py-2">{{ $laundry->delivery_address }}</td>
                                         <td class="border px-4 py-2">
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="mt-4">
-                        {{ $laundry->links() }}
+                        {{ $laundries->links() }}
                     </div>
                 </div>
             </div>

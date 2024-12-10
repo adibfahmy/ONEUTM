@@ -15,7 +15,7 @@ class CreateParcelsTable extends Migration
             $table->enum('pickup_point', ['Cengal Parcel Point', 'One Parcel Centre', 'Angkasa Ninja Van']);
             $table->string('phone_number');
             $table->string('delivery_address');
-            $table->enum('status', ['pending', 'picked_up', 'out_for_delivery', 'delivered'])->default('pending');
+            $table->enum('status', allowed: ['pending', 'picked_up', 'out_for_delivery', 'delivered'])->default('pending');
             $table->timestamps();
             // Add any additional fields here as necessary
         });
