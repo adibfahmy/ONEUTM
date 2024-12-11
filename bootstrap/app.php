@@ -12,6 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+        $middleware->appendToGroup('admin', [
+            App\Http\Middleware\AdminAuthenticated::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
