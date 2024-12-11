@@ -26,7 +26,11 @@
 
                     <!-- Action Buttons -->
                     <div class="mt-6 flex space-x-4">
-                        <button class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Buy Now</button>
+                        <form action="{{ route('marketplace.add_to_cart', $item->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Add to Cart</button>
+                        </form>
+                        
                         <a href="{{ route('marketplace.marketindex') }}"
                             class="px-6 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Back to Catalog</a>
                         <a href="{{ route('marketplace.marketedit', $item->id) }}"
