@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
@@ -20,6 +20,19 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Admin dashboard route
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    // Admin user management routes 
+    Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');  // For editing users
+    Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');  // For updating users
+    Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');  // For deleting users
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
