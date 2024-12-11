@@ -12,3 +12,4 @@
 | [ProfileController](app/Http/Controllers/ProfileController.php) | Huda          |
 | [Dashboard](resources/views/dashboard.blade.php) | Huda          |
 | [AdminController](app/Http/Controllers/AdminController.php) | Huda          |
+| [AdminView](resources/views/admin) | Huda          |
