@@ -150,6 +150,7 @@ class CatalogController extends Controller
 
     public function viewCart()
     {
+        // dd("test");
         // Get all cart items from the session
         $cart = session()->get('cart', []);
     
@@ -161,5 +162,30 @@ class CatalogController extends Controller
     {
         return view('marketplace.test');
     }
+
+    public function checkout()
+    {
+        // Example data for demonstration
+        $cart = session('cart', []); // Assuming cart data is stored in the session
+        $total = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
+
+        return view('marketplace.marketcheckout', compact('cart', 'total'));
+    }
  
+
+    public function placeOrder(Request $request)
+    {
+        $cart = session('cart', []);
+        if (empty($cart)) {
+            return redirect()->route('checkout')->with('error', 'Your cart is empty.');
+        }
+
+        // Example: Save the order to the database (not implemented)
+        session()->forget('cart'); // Clear the cart
+
+        return redirect()->route('marketplace.marketindex')->with('success', 'Order placed successfully!');
+    }
+
 }
