@@ -13,3 +13,6 @@
 | [Dashboard](resources/views/dashboard.blade.php) | Huda          |
 | [AdminController](app/Http/Controllers/AdminController.php) | Huda          |
 | [AdminView](resources/views/admin) | Huda          |
+| [ChatInterface](resources/views/chat.blade.php) | Nabil          |
+| [PurchaseHistory](resources/views/purchase-history.blade.php) | Nabil          |
+| [PurchaseHistoryController](app/Http/Controllers/PurchaseHistoryController.php) | Nabil          |
