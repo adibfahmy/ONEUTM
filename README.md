@@ -10,6 +10,7 @@
 | [LaundryController](app/Http/Controllers/LaundryController.php) | Aidiel          |
 | [LoginView](resources/views/auth) | Huda          |
 | [ProfileController](app/Http/Controllers/ProfileController.php) | Huda          |
+| [ForgetPassword](resources/views/auth) | Huda          |
 | [Dashboard](resources/views/dashboard.blade.php) | Huda          |
 | [AdminController](app/Http/Controllers/AdminController.php) | Huda          |
 | [AdminView](resources/views/admin) | Huda          |
