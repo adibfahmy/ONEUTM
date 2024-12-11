@@ -45,6 +45,8 @@
                     <div class="py-1">
                         <a href="{{ route('profile.edit') }}"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('Profile') }}</a>
+                            <a href="{{ route('purchase-history') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{{ __('Purchase History') }}</a> <!-- Added Purchase History link -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit"

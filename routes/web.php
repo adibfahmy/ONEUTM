@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\LaundryController;
+use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\OrderController;
+
 use Illuminate\Support\Facades\Broadcast;
 
 
@@ -103,6 +106,10 @@ Route::middleware('auth')->group(function() {
 Route::get('/chat', function () {
     return view('chat');
 })->name('chat.index');
+
+Route::get('/purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
+Route::post('/email-receipt', [OrderController::class, 'emailReceipt'])->name('order.emailReceipt');
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
