@@ -73,9 +73,15 @@ Route::middleware('auth')->group(function() {
 
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
 
+    // Route to add an item to the cart
+    Route::post('/marketplace/add-to-cart/{id}', [CatalogController::class, 'addToCart'])->name('marketplace.add_to_cart');
 
+    // Cart view route
+    Route::get('/marketplace/cartview', [CatalogController::class, 'viewCart'])->name('marketplace.cartview');
 
+    Route::get('/marketplace/test', [CatalogController::class, 'testing'])->name('marketplace.test');
 
+    
 });
 
 Route::middleware('auth')->group(function() {
