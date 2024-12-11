@@ -121,5 +121,45 @@ class CatalogController extends Controller
         return redirect()->route('marketplace.marketindex')->with('success', 'Item updated successfully!');
     }
 
+    public function addToCart($id)
+    {
+        // Get the item by its ID
+        $item = CatalogItem::findOrFail($id);
 
+        // Add the item to the cart (using session, database, etc.)
+        $cart = session()->get('cart', []);
+
+        // Add or update the item in the cart
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                'name' => $item->name,
+                'price' => $item->price,
+                'quantity' => 1,
+                'image_url' => $item->image_url
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        // Redirect to the cart view
+        return redirect()->route('marketplace.cartview');
+    }
+
+
+    public function viewCart()
+    {
+        // Get all cart items from the session
+        $cart = session()->get('cart', []);
+    
+        // Return the cart view with cart data
+        return view('marketplace.cartview', ['cart' => $cart]);
+    }
+
+    public function testing()
+    {
+        return view('marketplace.test');
+    }
+ 
 }
