@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
@@ -23,6 +23,22 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::get('marketplace/testee', function(){ 
+    dd('test');
+});
+
+Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Admin dashboard route
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+    // Admin user management routes 
+    Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');  // For editing users
+    Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');  // For updating users
+    Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');  // For deleting users
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -52,10 +68,11 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
     Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
 
-});
-
-Route::middleware('auth')->group(function() {
-
+    // Route to add an item to the cart
+    Route::post('/marketplace/add-to-cart/{id}', [CatalogController::class, 'addToCart'])->name('marketplace.add_to_cart');
+    // Cart view route
+    Route::get('/marketplace/cartview', [CatalogController::class, 'viewCart'])->name('marketplace.cartview');
+    Route::get('/marketplace/test', [CatalogController::class, 'testing'])->name('marketplace.test');
     // Route to display the catalog items
     Route::get('/marketplace/catalog', [CatalogController::class, 'index'])->name('marketplace.marketindex');
     // Route to display the "Add Product" form
@@ -64,21 +81,16 @@ Route::middleware('auth')->group(function() {
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
     // Route to delete a product
     Route::delete('/marketplace/product/{id}', [CatalogController::class, 'destroy'])->name('marketplace.destroy');
-
     Route::get('/marketplace/{id}', [CatalogController::class, 'show'])->name('marketplace.marketshow');
-
     Route::get('/marketplace', [CatalogController::class, 'search'])->name('marketplace.marketindex');
-
     // Route to clear search and go back to the index page
     Route::get('/marketplace/clearsearch', [CatalogController::class, 'clearSearch'])->name('marketplace.clearsearch');
-
     Route::get('/marketplace/{id}/edit', [CatalogController::class, 'edit'])->name('marketplace.marketedit');
-
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
- 
-});
+    Route::get('/checkout', [CatalogController::class, 'checkout'])->name('checkout');
+    Route::post('/place-order', [CatalogController::class, 'placeOrder'])->name('placeOrder');
 
-Route::middleware('auth')->group(function() {
+
 
     Route::get('/laundry', [LaundryController::class, 'index'])->name('laundry.index');
     Route::get('/laundry/track', [LaundryController::class, 'index'])->name('laundry.track');
