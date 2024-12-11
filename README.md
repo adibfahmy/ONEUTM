@@ -4,6 +4,12 @@
 |----------------|---------------------------------|
 | [MarketplaceView](resources/views/marketplace) | Adib         |
 | [CatalogController](app/Http/Controllers/CatalogController.php) | Adib        |
-| [file2.php](src/file2.php) | _____        |
-| [file2.php](src/file2.php) | _____        |
-| [file3.php](src/file3.php) | _____         |
+| [ParcelView.php](resources/views/parcels) | Aidiel        |
+| [ParcelController.php](app/Http/Controllers/ParcelController.php) | Aidiel        |
+| [LaundryView](resources/views/laundry) | Aidiel         |
+| [LaundryController](app/Http/Controllers/LaundryController.php) | Aidiel          |
+| [LoginView](resources/views/auth) | Huda          |
+| [ProfileController](app/Http/Controllers/ProfileController.php) | Huda          |
+| [Dashboard](resources/views/dashboard.blade.php) | Huda          |
+| [AdminController](app/Http/Controllers/AdminController.php) | Huda          |
+| [AdminView](resources/views/admin) | Huda          |
