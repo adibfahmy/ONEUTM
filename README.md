@@ -1,8 +1,11 @@
 # Project Files
+Name : Muhammad Adib Fahmy bin Roslan
+|----------------|---------------------------------|
+| Sprint 1 | [MarketplaceView](resources/views/marketplace) \n test | Adib         |
 
 | Name           | Description                     |
 |----------------|---------------------------------|
-| [MarketplaceView](resources/views/marketplace) | Adib         |
+
 | [CatalogController](app/Http/Controllers/CatalogController.php) | Adib        |
 | [ParcelView.php](resources/views/parcels) | Aidiel        |
 | [ParcelController.php](app/Http/Controllers/ParcelController.php) | Aidiel        |
