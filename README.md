@@ -1,22 +1,41 @@
 # Project Files
-Name : Muhammad Adib Fahmy bin Roslan
-|----------------|---------------------------------|
-| Sprint 1 | [MarketplaceView](resources/views/marketplace) \n test | Adib         |
 
-| Name           | Description                     |
-|----------------|---------------------------------|
+## Adib's Contributions
 
-| [CatalogController](app/Http/Controllers/CatalogController.php) | Adib        |
-| [ParcelView.php](resources/views/parcels) | Aidiel        |
-| [ParcelController.php](app/Http/Controllers/ParcelController.php) | Aidiel        |
-| [LaundryView](resources/views/laundry) | Aidiel         |
-| [LaundryController](app/Http/Controllers/LaundryController.php) | Aidiel          |
-| [LoginView](resources/views/auth) | Huda          |
-| [ProfileController](app/Http/Controllers/ProfileController.php) | Huda          |
-| [ForgetPassword](resources/views/auth) | Huda          |
-| [Dashboard](resources/views/dashboard.blade.php) | Huda          |
-| [AdminController](app/Http/Controllers/AdminController.php) | Huda          |
-| [AdminView](resources/views/admin) | Huda          |
-| [ChatInterface](resources/views/chat.blade.php) | Nabil          |
-| [PurchaseHistory](resources/views/purchase-history.blade.php) | Nabil          |
-| [PurchaseHistoryController](app/Http/Controllers/PurchaseHistoryController.php) | Nabil          |
+| Name           | Description                                                                                 | Contributor    |
+|----------------|---------------------------------------------------------------------------------------------|----------------|
+| Sprint 1       | [MarketplaceView](resources/views/marketplace), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+
+---
+
+## Aidiel's Contributions
+
+| Name              | Description                                                                             | Contributor    |
+|-------------------|-----------------------------------------------------------------------------------------|----------------|
+| Parcel View       | [ParcelView.php](resources/views/parcels) - Parcel-related views                        | Aidiel         |
+| Parcel Controller | [ParcelController.php](app/Http/Controllers/ParcelController.php) - Controls parcel-related features | Aidiel         |
+| Laundry View      | [LaundryView](resources/views/laundry) - Laundry-related views                          | Aidiel         |
+| Laundry Controller| [LaundryController](app/Http/Controllers/LaundryController.php) - Controls laundry-related features | Aidiel |
+
+---
+
+## Huda's Contributions
+
+| Name              | Description                                                                             | Contributor    |
+|-------------------|-----------------------------------------------------------------------------------------|----------------|
+| Login View        | [LoginView](resources/views/auth) - Authentication view                                 | Huda           |
+| Profile Controller| [ProfileController](app/Http/Controllers/ProfileController.php) - Manages user profiles | Huda           |
+| Forget Password   | [ForgetPassword](resources/views/auth) - Password recovery view                         | Huda           |
+| Dashboard         | [Dashboard](resources/views/dashboard.blade.php) - User dashboard view                 | Huda           |
+| Admin Controller  | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin features   | Huda           |
+| Admin View        | [AdminView](resources/views/admin) - Admin-related views                                | Huda           |
+
+---
+
+## Nabil's Contributions
+
+| Name                    | Description                                                                       | Contributor    |
+|-------------------------|-----------------------------------------------------------------------------------|----------------|
+| Chat Interface          | [ChatInterface](resources/views/chat.blade.php) - Chat functionality view         | Nabil          |
+| Purchase History        | [PurchaseHistory](resources/views/purchase-history.blade.php) - Displays purchase history | Nabil          |
+| Purchase History Controller | [PurchaseHistoryController](app/Http/Controllers/PurchaseHistoryController.php) - Manages purchase history | Nabil |
