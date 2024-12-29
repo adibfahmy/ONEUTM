@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StudentGrabController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ParcelController;
@@ -33,7 +34,6 @@ Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function ()
     // Admin dashboard route
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
-    // Admin user management routes 
     Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');  // For editing users
     Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');  // For updating users
     Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');  // For deleting users
@@ -113,6 +113,31 @@ Route::middleware('auth')->group(function() {
     Route::post('/laundry/{laundry}/update-status', [LaundryController::class, 'updateStatus'])->name('laundry.updateStatus');
     Route::get('/my-laundry', [LaundryController::class, 'myLaundry'])->name('laundry.myLaundry');
 });
+
+Route::middleware('auth')->group(function() {
+
+    Route::get('/studentgrab', [StudentGrabController::class, 'index'])->name('studentgrab.index');
+    Route::get('/studentgrab/create', [StudentGrabController::class, 'create'])->name('studentgrab.create');
+    Route::post('/studentgrab/store', [StudentGrabController::class, 'store'])->name('studentgrab.store');
+    Route::get('/studentgrab/track/{id}', [StudentGrabController::class, 'track'])->name('studentgrab.track');
+    Route::post('/studentgrab/pickup/{id}', [StudentGrabController::class, 'pickup'])->name('studentgrab.pickup');
+    Route::post('/studentgrab/deliver/{id}', [StudentGrabController::class, 'deliver'])->name('studentgrab.deliver');
+    Route::post('/studentgrab/{studentgrab}/accept-order', [StudentGrabController::class, 'acceptOrder'])->name('studentgrab.acceptOrder');
+    Route::delete('/studentgrab/{studentgrab}', [StudentGrabController::class, 'delete'])->name('studentgrab.delete');
+    Route::resource('studentgrab', StudentGrabController::class);
+
+    Route::post('/studentgrab/{studentGrab}/pickup', [StudentGrabController::class, 'pickup'])->name('studentgrab.pickup');
+
+    Route::post('/studentgrab/{studentGrab}/update-status', action: [StudentGrabController::class, 'updateStatus'])->name('studentgrab.updateStatus');
+    Route::get('/studentgrab-service', [StudentGrabController::class, 'service'])->name('studentgrab.service');
+    Route::delete('/studentgrab/{id}', [StudentGrabController::class, 'destroy'])->name('studentgrab.destroy');
+    Route::post('/studentgrab/{studentgrab}/cancel', [StudentGrabController::class, 'cancelOrder'])->name('studentgrab.cancelOrder');
+    Route::post('/studentgrab/{studentgrab}/accept', [StudentGrabController::class, 'acceptOrder'])->name('studentgrab.acceptOrder');
+    Route::get('/studentgrab/{studentgrab}/track', [StudentGrabController::class, 'track'])->name('studentgrab.track');
+    // Route::post('/studentgrab/{studentgrab}/update-status', [StudentGrabController::class, 'updateStatus'])->name('studentgrab.updateStatus');
+    Route::get('/my-studentgrab', [StudentGrabController::class, 'myStudentGrab'])->name('studentgrab.myStudentGrab');
+});
+
 
 
 Route::get('/chat', function () {

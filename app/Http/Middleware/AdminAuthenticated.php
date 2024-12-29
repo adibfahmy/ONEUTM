@@ -26,8 +26,8 @@ class AdminAuthenticated
                 return $next($request);
             }
 
-            // Deny access for non-admin users
-             abort(403, 'Access denied. You do not have sufficient permissions.');
+            // Redirect non-admin users to the home page
+            return redirect('/')->with('error', 'Access denied. You do not have sufficient permissions.');
         }
 
         // Redirect unauthenticated users to the login page

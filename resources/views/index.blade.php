@@ -112,12 +112,12 @@
                 </div>
             </a>
 
-
             <!-- Student Grab -->
-            <div class="flex items-start space-x-4">
-                <div class="bg-redIconColor p-3 rounded-lg">
-                    <i class="text-white">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+            <a href="{{ route('studentgrab.service') }}" class="hover:bg-gray-100 p-3 rounded-sm">
+                <div class="flex items-start space-x-4">
+                    <div class="bg-redIconColor p-3 rounded-lg">
+                        <i class="text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-car">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -125,17 +125,18 @@
                             <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                             <path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5" />
                         </svg>
-                    </i>
+                        </i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl text-primary font-semibold mb-1">Student Grab</h2>
+                        <p class="text-gray-600 text-sm text-justify">
+                            Reliable and affordable transportation for students. We provide safe and comfortable rides to
+                            and
+                            from school, extracurricular activities, and more.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <h2 class="text-xl text-primary font-semibold mb-1">Student Grab</h2>
-                    <p class="text-gray-600 text-sm text-justify">
-                        Reliable and affordable transportation for students. We provide safe and comfortable rides to
-                        and
-                        from school, extracurricular activities, and more.
-                    </p>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
 </body>
