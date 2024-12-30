@@ -197,20 +197,28 @@ class CatalogController extends Controller
     // Handle the form submission
     public function confirmOrder(Request $request)
     {
-        // Validate the form inputs
+        // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:500',
             'phone' => 'required|regex:/^[0-9]{10,15}$/',
             'email' => 'required|email|max:255',
+            'receipt' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048', // Validate image files
         ]);
 
-        // Process the order (e.g., save to the database)
-        // Assuming you have an Order model:
-        // Order::create($validatedData);
+        // Handle the file upload
+        if ($request->hasFile('receipt')) {
+            $file = $request->file('receipt');
+            $path = $file->store('receipts', 'public'); // Store image in storage/app/public/receipts
+        }
 
-        // Redirect to the marketplace with a success message
+        // Store the order details in the database or perform any necessary actions
+        // Example: Order::create([...]);
+
+        // Redirect to a success page or back to the marketplace
         return redirect()->route('marketplace.marketindex')->with('success', 'Order placed successfully!');
     }
+
+
 
 }
