@@ -38,8 +38,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <form action="{{ route('placeOrder') }}" method="POST">
-                        @csrf
+                    <form action="{{ route('order.details') }}" method="GET">
                         <button type="submit" class="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600">Place Order</button>
                     </form>
                 </div>
