@@ -68,6 +68,10 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
     Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
 
+     // Route to display the order details form
+     Route::post('/order-details', [CatalogController::class, 'showOrderForm'])->name('order.details');
+     // Route to handle the form submission
+     Route::post('/order-confirm', [CatalogController::class, 'confirmOrder'])->name('confirmOrder');
     // Route to add an item to the cart
     Route::post('/marketplace/add-to-cart/{id}', [CatalogController::class, 'addToCart'])->name('marketplace.add_to_cart');
     // Cart view route
@@ -89,6 +93,7 @@ Route::middleware('auth')->group(function() {
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
     Route::get('/checkout', [CatalogController::class, 'checkout'])->name('checkout');
     Route::post('/place-order', [CatalogController::class, 'placeOrder'])->name('placeOrder');
+   
 
 
 
