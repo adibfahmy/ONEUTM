@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function() {
     Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
 
      // Route to display the order details form
-     Route::post('/order-details', [CatalogController::class, 'showOrderForm'])->name('order.details');
+     Route::get('/order-details', [CatalogController::class, 'showOrderForm'])->name('order.details');
      // Route to handle the form submission
      Route::post('/order-confirm', [CatalogController::class, 'confirmOrder'])->name('confirmOrder');
     // Route to add an item to the cart
