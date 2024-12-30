@@ -188,4 +188,29 @@ class CatalogController extends Controller
         return redirect()->route('marketplace.marketindex')->with('success', 'Order placed successfully!');
     }
 
+    // Show the order details form
+    public function showOrderForm()
+    {
+        return view('marketplace.orderdetails'); // Ensure the view file is named 'orderdetails.blade.php'
+    }
+
+    // Handle the form submission
+    public function confirmOrder(Request $request)
+    {
+        // Validate the form inputs
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:500',
+            'phone' => 'required|regex:/^[0-9]{10,15}$/',
+            'email' => 'required|email|max:255',
+        ]);
+
+        // Process the order (e.g., save to the database)
+        // Assuming you have an Order model:
+        // Order::create($validatedData);
+
+        // Redirect to the marketplace with a success message
+        return redirect()->route('marketplace.marketindex')->with('success', 'Order placed successfully!');
+    }
+
 }
