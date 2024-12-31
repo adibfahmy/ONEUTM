@@ -3,12 +3,17 @@
     <!-- Left Section -->
     <div class="flex items-center">
         <!-- Clickable ONEUTM -->
-        <a href="{{ route('home') }}" class="text-primary font-bold text-2xl mr-0 lg:mr-16">
+        <a href="{{ route('admin.dashboard') }}" class="text-primary font-bold text-2xl mr-0 lg:mr-16">
             ONEUTM
         </a>
-        <div class="text-zinc-500 space-x-">
+        <div class="text-zinc-500 space-x-4">
             <a href="{{ route('admin.dashboard') }}" class="text-primary">Users</a>
         </div>
+
+        <div class="text-zinc-500 space-x-4">
+            <a href="{{ route('admin.history') }}" class="text-primary">History</a>
+        </div>
+
     </div>
 
     <!-- Right Section -->

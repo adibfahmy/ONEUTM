@@ -25,19 +25,37 @@ Route::get('/dashboard', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+<<<<<<< Updated upstream
 
 Route::get('marketplace/testee', function(){ 
     dd('test');
 });
 
+=======
+>>>>>>> Stashed changes
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
     // Admin dashboard route
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
+<<<<<<< Updated upstream
     Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');  // For editing users
     Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');  // For updating users
     Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');  // For deleting users
+=======
+    // History routes
+    Route::get('/history', [AdminController::class, 'history'])->name('history');
+    Route::get('/history/{type}', [AdminController::class, 'historyByType'])->name('history.type');
+    Route::get('/history/{type}/edit/{id}', [AdminController::class, 'editService'])->name('history.edit');  // Updated route name to 'history.edit'
+    Route::post('/history/{type}/update/{id}', [AdminController::class, 'updateService'])->name('history.update');
+    Route::delete('/history/{type}/delete/{id}', [AdminController::class, 'deleteService'])->name('history.delete');
+
+    // Admin user management routes
+    Route::get('users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');
+    Route::put('users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+    Route::delete('users/{user}', [AdminController::class, 'deleteUser'])->name('users.delete');
+>>>>>>> Stashed changes
 });
+
 
 
 Route::middleware('auth')->group(function () {
