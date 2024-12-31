@@ -6,6 +6,12 @@
                 <th class="px-4 py-2">Pickup Point</th>
                 <th class="px-4 py-2">Phone Number</th>
                 <th class="px-4 py-2">Delivery Address</th>
+
+                @if ($type === 'student-grab')
+                    <th class="px-4 py-2">Date</th>
+                    <th class="px-4 py-2">Time</th>
+                @endif
+
                 <th class="px-4 py-2">Status</th>
                 <th class="px-4 py-2">Actions</th>
             </tr>
@@ -17,6 +23,13 @@
                     <td class="border px-4 py-2">{{ $item->pickup_address ?? $item->pickup_point }}</td>
                     <td class="border px-4 py-2">{{ $item->phone_number }}</td>
                     <td class="border px-4 py-2">{{ $item->delivery_address }}</td>
+
+                    @if ($type === 'student-grab')
+                        <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($item->date)->format('Y-m-d') }}</td>
+                        <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($item->time)->format('H:i A') }}</td>
+                    @endif
+
+
                     <td class="border px-4 py-2">
                         <span
                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
@@ -28,7 +41,12 @@
                         </span>
                     </td>
                     <td class="border px-4 py-2">
-                        <a href="{{ route($type . '.track', $item->id) }}" class="text-blue-600 hover:text-blue-900">Track</a>
+                        <!-- Trigger Button -->
+                        <a href="javascript:void(0);"
+                            onclick="openDeleteModal('{{ route('admin.history.delete', ['type' => $type, 'id' => $item->id]) }}')"
+                            class="text-red-600 hover:text-red-900">
+                            Delete
+                        </a>
                     </td>
                 </tr>
             @endforeach

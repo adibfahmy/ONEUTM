@@ -8,11 +8,9 @@
         </a>
         <div class="text-zinc-500 space-x-4">
             <a href="{{ route('admin.dashboard') }}" class="text-primary">Users</a>
+            <a href="{{ route('admin.history') }}" class="text-primary ml-8">History</a> <!-- Add margin-left -->
         </div>
-
-        <div class="text-zinc-500 space-x-4">
-            <a href="{{ route('admin.history') }}" class="text-primary">History</a>
-        </div>
+    </div>
 
     </div>
 

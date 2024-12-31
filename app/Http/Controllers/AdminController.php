@@ -59,9 +59,9 @@ class AdminController extends Controller
         $laundries = Laundry::with('user')->latest()->get();
         $parcels = Parcel::with('user')->latest()->get();
         // $marketplaceOrders = Marketplace::with('user')->latest()->get();
-        // $studentGrabs = StudentGrab::with('user')->latest()->get();
+        $StudentGrab = StudentGrab::with('user')->latest()->get();
 
-        return view('admin.history', compact('laundries', 'parcels' ));
+        return view('admin.history', compact('laundries', 'parcels' , 'StudentGrab'));
     }
 
     // Edit a service record
@@ -108,7 +108,7 @@ class AdminController extends Controller
             'laundry' => Laundry::class,
             'parcel' => Parcel::class,
             // 'marketplace' => Marketplace::class,
-            // 'student-grab' => StudentGrab::class,
+            'student-grab' => StudentGrab::class,
             default => throw new \InvalidArgumentException('Invalid service type')
         };
     }
