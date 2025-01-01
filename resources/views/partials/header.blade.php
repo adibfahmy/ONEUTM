@@ -11,6 +11,7 @@
             <a href="#" class="hover:text-primary">More</a>
             <a href="#" class="hover:text-primary">About</a>
             <a href="{{ route('chat.index') }}" class="hover:text-primary">Chat</a> <!-- Chat button -->
+            <a href="{{ route('faq.index') }}" class="hover:text-primary">FAQ</a>
         </div>
     </div>
 
