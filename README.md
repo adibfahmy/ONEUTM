@@ -4,7 +4,11 @@
 
 | Name           | Description                                                                                 | Contributor    |
 |----------------|---------------------------------------------------------------------------------------------|----------------|
-| Sprint 1       | [MarketplaceView](resources/views/marketplace), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+| Sprint 1       | [MarketplaceVIEW](resources/views/marketplace/narketindex.blade.php), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+| Sprint 2       | [Add Item to Catalog](resources/views/marketplace/marketcreate.blade.php), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+| Sprint 2       | [Add to Cart](resources/views/marketplace), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+| Sprint 3       | [Payment and checkout](resources/views/marketplace/orderdetails.blade.php), [CatalogController](app/Http/Controllers/CatalogController.php) | Adib           |
+| Sprint 4       | [FAQ](resources/views/faqindex.blade.php), [FAQController](app/Http/Controllers/FAQController.php) | Adib           |
 
 ---
 
