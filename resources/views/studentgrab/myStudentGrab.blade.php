@@ -28,7 +28,7 @@
                                         <th class="py-2 px-4 border-b">Delivery Address</th>
                                         <th class="py-2 px-4 border-b">Date</th>
                                         <th class="py-2 px-4 border-b">Time</th>
-                                        <th class="py-2 px-4 border-b">Phone Number</th>
+                                        <th class="py-2 px-4 border-b">Deliverer Phone Number</th>
                                         <th class="py-2 px-4 border-b">Status</th>
                                     </tr>
                                 </thead>
