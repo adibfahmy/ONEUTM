@@ -16,6 +16,8 @@
 | Parcel Controller | [ParcelController.php](app/Http/Controllers/ParcelController.php) - Controls parcel-related features | Aidiel         |
 | Laundry View      | [LaundryView](resources/views/laundry) - Laundry-related views                          | Aidiel         |
 | Laundry Controller| [LaundryController](app/Http/Controllers/LaundryController.php) - Controls laundry-related features | Aidiel |
+| Student Grab Controller| [StudentGrabController](app/Http/Controllers/StudentGrabController.php) - Controls Student Grab-related features | Aidiel |
+| Student Grab View      | [StudentGrabView](resources/views/studentgrab) - Student Grab-related views                          | Aidiel         |
 
 ---
 
