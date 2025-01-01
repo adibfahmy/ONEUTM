@@ -31,8 +31,8 @@
 | Sprint 1         | [Dashboard](resources/views/dashboard.blade.php) - User dashboard view                 | Huda           |
 | Sprint 2 Admin User Management Controller | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin features   | Huda           |
 | Sprint 2 Admin User Management View       | [AdminView](resources/views/admin) - Admin-related views                                | Huda           |
-| Sprint 3  Admin View History Controller | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin features   | Huda           |
-| Sprint 3  Admin View History View      | [AdminView](resources/views/admin) - Admin View History-related views                                | Huda           |
+| Sprint 3  Admin View History Controller | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin history features   | Huda           |
+| Sprint 3  Admin View History View      | [AdminView](resources/views/admin) - Admin view history-related views                                | Huda           |
 
 ---
 
