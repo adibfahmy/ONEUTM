@@ -9,6 +9,7 @@ use App\Http\Controllers\ParcelController;
 use App\Http\Controllers\LaundryController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FAQController;
 
 use Illuminate\Support\Facades\Broadcast;
 
@@ -48,6 +49,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/faq', [FAQController::class, 'index'])->name('faq.index');
 });
 
 Route::middleware('auth')->group(function() {
