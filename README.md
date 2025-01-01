@@ -25,10 +25,10 @@
 
 | Name              | Description                                                                             | Contributor    |
 |-------------------|-----------------------------------------------------------------------------------------|----------------|
-| Sprint 1        | [LoginView](resources/views/auth) - Authentication view                                 | Huda           |
-| Sprint 1 | [ProfileController](app/Http/Controllers/ProfileController.php) - Manages user profiles | Huda           |
-| Sprint 1   | [ForgetPassword](resources/views/auth) - Password recovery view                         | Huda           |
-| Sprint 1         | [Dashboard](resources/views/dashboard.blade.php) - User dashboard view                 | Huda           |
+| Sprint 1 User Authentication view       | [LoginView](resources/views/auth) - Authentication view                                 | Huda           |
+| Sprint 1 Manage User Profile Controller| [ProfileController](app/Http/Controllers/ProfileController.php) - Manages user profiles | Huda           |
+| Sprint 1 Forget Password View  | [ForgetPassword](resources/views/auth) - Password recovery view                         | Huda           |
+| Sprint 1 User Homepage View        | [Dashboard](resources/views/dashboard.blade.php) - User homepage view                 | Huda           |
 | Sprint 2 Admin User Management Controller | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin features   | Huda           |
 | Sprint 2 Admin User Management View       | [AdminView](resources/views/admin) - Admin-related views                                | Huda           |
 | Sprint 3  Admin View History Controller | [AdminController](app/Http/Controllers/AdminController.php) - Controls admin history features   | Huda           |
