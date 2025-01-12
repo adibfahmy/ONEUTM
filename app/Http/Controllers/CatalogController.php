@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;  // Correct namespace
 
 use App\Models\CatalogItem;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 
@@ -197,28 +198,54 @@ class CatalogController extends Controller
     // Handle the form submission
     public function confirmOrder(Request $request)
     {
-        // Validate the form data
+        // Validate the incoming data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'address' => 'required|string|max:500',
-            'phone' => 'required|regex:/^[0-9]{10,15}$/',
-            'email' => 'required|email|max:255',
-            'receipt' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048', // Validate image files
+            'address' => 'required|string',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email',
+            'receipt' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        // Handle the file upload
+    
+        // Save the uploaded receipt
         if ($request->hasFile('receipt')) {
-            $file = $request->file('receipt');
-            $path = $file->store('receipts', 'public'); // Store image in storage/app/public/receipts
+            $filePath = $request->file('receipt')->store('receipts', 'public');
         }
-
-        // Store the order details in the database or perform any necessary actions
-        // Example: Order::create([...]);
-
-        // Redirect to a success page or back to the marketplace
-        return redirect()->route('marketplace.marketindex')->with('success', 'Order placed successfully!');
+    
+        // Handle the form data (e.g., save to the database, send an email, etc.)
+        // Example:
+        Order::create([
+            'name' => $validatedData['name'],
+            'address' => $validatedData['address'],
+            'phone' => $validatedData['phone'],
+            'email' => $validatedData['email'],
+            'receipt_path' => $filePath ?? null,
+        ]);
+    
+        // Redirect or return a response
+        return redirect()->route('marketplace.marketindex')->with('success', 'Order confirmed successfully!');
     }
+    
 
-
+    public function removeFromCart(Request $request, $id)
+    {
+        // Fetch the cart from session or database
+        $cart = session()->get('cart', []);
+    
+        // Check if the item exists in the cart
+        if (isset($cart[$id])) {
+            // Remove the item from the cart
+            unset($cart[$id]);
+    
+            // Save the updated cart back to the session
+            session()->put('cart', $cart);
+    
+            // Provide feedback to the user
+            return redirect()->back()->with('success', 'Item removed from the cart.');
+        }
+    
+        return redirect()->back()->with('error', 'Item not found in the cart.');
+    }
+    
 
 }
