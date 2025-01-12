@@ -28,6 +28,9 @@
                                 <td class="px-4 py-2">RM{{ number_format($item['price'], 2) }}</td>
                                 <td class="px-4 py-2">{{ $item['quantity'] }}</td>
                                 <td class="px-4 py-2">RM{{ number_format($item['price'] * $item['quantity'], 2) }}</td>
+                                <td class="px-4 py-2">
+                                    <a href="{{ route('cart.remove', $id) }}" class="text-red-500 hover:underline">Remove</a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
