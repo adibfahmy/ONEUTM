@@ -102,6 +102,8 @@ Route::middleware('auth')->group(function() {
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
     Route::get('/checkout', [CatalogController::class, 'checkout'])->name('checkout');
     Route::post('/place-order', [CatalogController::class, 'placeOrder'])->name('placeOrder');
+    Route::get('/cart/remove/{id}', [CatalogController::class, 'removeFromCart'])->name('cart.remove');
+
 
 
 
