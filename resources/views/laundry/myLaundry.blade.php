@@ -26,6 +26,7 @@
                                         <th class="py-2 px-4 border-b">Pickup Address</th>
                                         <th class="py-2 px-4 border-b">Phone Number</th>
                                         <th class="py-2 px-4 border-b">Delivery Address</th>
+                                        <th class="py-2 px-4 border-b">Deliverer Phone Number</th>
                                         <th class="py-2 px-4 border-b">Status</th>
                                     </tr>
                                 </thead>
@@ -35,7 +36,23 @@
                                             <td class="py-2 px-4 border-b">{{ $laundry->pickup_address }}</td>
                                             <td class="py-2 px-4 border-b">{{ $laundry->phone_number }}</td>
                                             <td class="py-2 px-4 border-b">{{ $laundry->delivery_address }}</td>
-                                            <td class="py-2 px-4 border-b">{{ ucfirst(str_replace('_', ' ', $laundry->status)) }}</td>
+                                            <td class="py-2 pc-4 border-b">
+                                                @if ($laundry->status != 'pending')
+                                                    {{ $laundry->deliverer ? $laundry->deliverer->phone_number : 'No Deliverer assigned' }}
+                                                @else
+                                                    No deliverer assigned
+                                                @endif
+                                            </td>
+                                            <td class="py-2 px-4 border-b">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                                    {{ $laundry->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                                    {{ $laundry->status === 'picked_up' ? 'bg-blue-100 text-blue-800' : '' }}
+                                                    {{ $laundry->status === 'out_for_delivery' ? 'bg-purple-100 text-purple-800' : '' }}
+                                                    {{ $laundry->status === 'delivered' ? 'bg-green-100 text-green-800' : '' }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $laundry->status)) }}
+                                                </span>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

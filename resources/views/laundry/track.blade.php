@@ -38,6 +38,15 @@
                                 <h3 class="text-lg font-semibold">Phone Number</h3>
                                 <p class="text-gray-600">{{ $laundry->phone_number }}</p>
                             </div>
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold">Pickup Point</h3>
+                                <p class="text-gray-600">{{ $laundry->pickup_address }}</p>
+                            </div>
+                            <div class="mb-4 mx-10">
+                                <h3 class="text-lg font-semibold">Delivery Address</h3>
+                                <p class="text-gray-600">{{ $laundry->delivery_address }}</p>
+                            </div>
+
                         </div>
 
 
