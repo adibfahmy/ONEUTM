@@ -57,7 +57,7 @@
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
                                                     {{ $studentGrab->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
                                                     {{ $studentGrab->status === 'picked_up' ? 'bg-blue-100 text-blue-800' : '' }}
-                                                    {{ $studentGrab->status === 'out_for_delivery' ? 'bg-purple-100 text-purple-800' : '' }}
+                                                    {{ $studentGrab->status === 'heading_to' ? 'bg-purple-100 text-purple-800' : '' }}
                                                     {{ $studentGrab->status === 'delivered' ? 'bg-green-100 text-green-800' : '' }}">
                                                     {{ ucfirst(str_replace('_', ' ', $studentGrab->status)) }}
                                                 </span>

@@ -25,6 +25,11 @@
                     </div>
                 @endif
 
+                <!-- Display validation error message for 'name' -->
+                @error('status')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
+
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2 class="text-2xl font-bold mb-4">Track Student Grab Order</h2>
 
@@ -97,7 +102,7 @@
                                     <!-- Picked Up Step -->
                                     <div class="relative flex flex-col items-center">
                                         <div
-                                            class="rounded-full h-12 w-12 flex items-center justify-center {{ in_array($studentGrab->status, ['picked_up', 'out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
+                                            class="rounded-full h-12 w-12 flex items-center justify-center {{ in_array($studentGrab->status, ['picked_up', 'heading_to', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
                                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -110,13 +115,13 @@
 
                                     <!-- Connector -->
                                     <div
-                                        class="flex-1 h-1 {{ in_array($studentGrab->status, ['out_for_delivery', 'delivered']) ? 'bg-green-300' : 'bg-gray-300' }}">
+                                        class="flex-1 h-1 {{ in_array($studentGrab->status, ['heading_to', 'delivered']) ? 'bg-green-300' : 'bg-gray-300' }}">
                                     </div>
 
                                     <!-- Out for Delivery Step -->
                                     <div class="relative flex flex-col items-center">
                                         <div
-                                            class="rounded-full h-12 w-12 flex items-center justify-center {{ in_array($studentGrab->status, ['out_for_delivery', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
+                                            class="rounded-full h-12 w-12 flex items-center justify-center {{ in_array($studentGrab->status, ['heading_to', 'delivered']) ? 'bg-green-500' : 'bg-gray-300' }}">
                                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -124,7 +129,7 @@
                                                 </path>
                                             </svg>
                                         </div>
-                                        <div class="text-center mt-2">Out for Delivery</div>
+                                        <div class="text-center mt-2">Heading to</div>
                                     </div>
 
                                     <!-- Connector -->
@@ -162,10 +167,10 @@
                                 <form action="{{ route('studentgrab.updateStatus', $studentGrab->id) }}" method="POST"
                                     class="inline">
                                     @csrf
-                                    <input type="hidden" name="status" value="out_for_delivery">
+                                    <input type="hidden" name="status" value="heading_to">
                                     <button type="submit"
                                         class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                        Out for Delivery
+                                        Heading to
                                     </button>
                                 </form>
 
@@ -181,7 +186,7 @@
                                     </form>
                                 @endif
                             </div>
-                        @elseif ($studentGrab->status === 'out_for_delivery')
+                        @elseif ($studentGrab->status === 'heading_to')
                             <form action="{{ route('studentgrab.updateStatus', $studentGrab->id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="status" value="delivered">

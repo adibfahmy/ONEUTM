@@ -75,7 +75,7 @@ class StudentGrabController extends Controller
     public function updateStatus(StudentGrab $studentGrab, Request $request)
     {
         $validated = $request->validate([
-            'status' => 'required|in:out_for_delivery,delivered',
+            'status' => 'required|in:heading_to,delivered',
         ]);
 
         $timestamp_field = $validated['status'] . '_at';
@@ -90,7 +90,7 @@ class StudentGrabController extends Controller
 
     public function delete(StudentGrab $studentGrab)
     {
-        if ($studentGrab->status === 'out_for_delivery') {
+        if ($studentGrab->status === 'heading_to') {
             $studentGrab->delete();
             return redirect()->route('studentgrab.index')->with('success', 'Order successfully delivered and removed.');
         }
