@@ -103,6 +103,8 @@ Route::middleware('auth')->group(function() {
     Route::get('/checkout', [CatalogController::class, 'checkout'])->name('checkout');
     Route::post('/place-order', [CatalogController::class, 'placeOrder'])->name('placeOrder');
     Route::get('/cart/remove/{id}', [CatalogController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/purchaseHistory', [CatalogController::class, 'purchaseHistory'])->name('purchaseHistory');
+
 
 
 
@@ -160,7 +162,7 @@ Route::get('/chat', function () {
     return view('chat');
 })->name('chat.index');
 
-Route::get('/purchase-history', [PurchaseHistoryController::class, 'index'])->name('purchase-history');
+Route::get('/purchase-history', [CatalogController::class, 'purchaseHistory'])->name('purchase-history');
 Route::post('/email-receipt', [OrderController::class, 'emailReceipt'])->name('order.emailReceipt');
 
 
