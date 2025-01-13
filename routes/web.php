@@ -77,14 +77,15 @@ Route::middleware('auth')->group(function() {
     Route::post('/parcel/{parcel}/update-status', [ParcelController::class, 'updateStatus'])->name('parcel.updateStatus');
     Route::get('/my-parcels', [ParcelController::class, 'myParcels'])->name('parcel.myParcels');
 
-     // Route to display the order details form
-     Route::get('/order-details', [CatalogController::class, 'showOrderForm'])->name('order.details');
-     // Route to handle the form submission
-     Route::post('/order-confirm', [CatalogController::class, 'confirmOrder'])->name('confirmOrder');
+    // Route to display the order details form
+    Route::get('/order-details', [CatalogController::class, 'showOrderForm'])->name('order.details');
+    // Route to handle the form submission
+    Route::post('/order-confirm', [CatalogController::class, 'confirmOrder'])->name('confirmOrder');
     // Route to add an item to the cart
     Route::post('/marketplace/add-to-cart/{id}', [CatalogController::class, 'addToCart'])->name('marketplace.add_to_cart');
     // Cart view route
     Route::get('/marketplace/cartview', [CatalogController::class, 'viewCart'])->name('marketplace.cartview');
+    // Test route
     Route::get('/marketplace/test', [CatalogController::class, 'testing'])->name('marketplace.test');
     // Route to display the catalog items
     Route::get('/marketplace/catalog', [CatalogController::class, 'index'])->name('marketplace.marketindex');
@@ -94,21 +95,24 @@ Route::middleware('auth')->group(function() {
     Route::post('/marketplace/product', [CatalogController::class, 'store'])->name('marketplace.store');
     // Route to delete a product
     Route::delete('/marketplace/product/{id}', [CatalogController::class, 'destroy'])->name('marketplace.destroy');
+    // Route to display a specific product
     Route::get('/marketplace/{id}', [CatalogController::class, 'show'])->name('marketplace.marketshow');
+    // Route to search for products in the marketplace
     Route::get('/marketplace', [CatalogController::class, 'search'])->name('marketplace.marketindex');
     // Route to clear search and go back to the index page
     Route::get('/marketplace/clearsearch', [CatalogController::class, 'clearSearch'])->name('marketplace.clearsearch');
+    // Route to edit a product
     Route::get('/marketplace/{id}/edit', [CatalogController::class, 'edit'])->name('marketplace.marketedit');
+    // Route to update a product
     Route::put('/marketplace/{id}', [CatalogController::class, 'update'])->name('marketplace.marketupdate');
+    // Route to display the checkout page
     Route::get('/checkout', [CatalogController::class, 'checkout'])->name('checkout');
+    // Route to place an order
     Route::post('/place-order', [CatalogController::class, 'placeOrder'])->name('placeOrder');
+    // Route to remove an item from the cart
     Route::get('/cart/remove/{id}', [CatalogController::class, 'removeFromCart'])->name('cart.remove');
+    // Route to display the user's purchase history
     Route::get('/purchaseHistory', [CatalogController::class, 'purchaseHistory'])->name('purchaseHistory');
-
-
-
-
-
 
     Route::get('/laundry', [LaundryController::class, 'index'])->name('laundry.index');
     Route::get('/laundry/track', [LaundryController::class, 'index'])->name('laundry.track');
