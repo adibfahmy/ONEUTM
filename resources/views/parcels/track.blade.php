@@ -27,9 +27,27 @@
 
                     <div class="bg-white p-6 rounded-lg shadow">
                         <!-- Parcel Information -->
-                        <div class="mb-4">
-                            <h3 class="text-lg font-semibold">Tracking Number</h3>
-                            <p class="text-gray-600">{{ $parcel->tracking_number }}</p>
+                        <div class="flex justify-between">
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold">Order ID</h3>
+                                <p class="text-gray-600">{{ $parcel->id }}</p>
+                            </div>
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold">Tracking Number</h3>
+                                <p class="text-gray-600">{{ $parcel->tracking_number }}</p>
+                            </div>
+                            <div class="mb-4 mx-10">
+                                <h3 class="text-lg font-semibold">Phone Number</h3>
+                                <p class="text-gray-600">{{ $parcel->phone_number }}</p>
+                            </div>
+                            <div class="mb-4">
+                                <h3 class="text-lg font-semibold">Pickup Point</h3>
+                                <p class="text-gray-600">{{ $parcel->pickup_point }}</p>
+                            </div>
+                            <div class="mb-4 mx-10">
+                                <h3 class="text-lg font-semibold">Delivery Address</h3>
+                                <p class="text-gray-600">{{ $parcel->delivery_address }}</p>
+                            </div>
                         </div>
 
                         <div class="mb-4">
@@ -51,7 +69,7 @@
                                                     d="M5 13l4 4L19 7"></path>
                                             </svg>
                                         </div>
-                                        <div class="text-center mt-2">Pending</div>
+                                        <div class="text-center mt-2">Pending Pickup</div>
                                     </div>
 
                                     <!-- Connector -->
@@ -158,12 +176,12 @@
                         <!-- Show Delete Button if Delivered -->
                         @if ($parcel->status === 'delivered')
                             <form action="{{ route('parcel.destroy', $parcel->id) }}" method="POST"
-                                onsubmit="return confirm('Are you sure you want to delete this tracking?');">
+                                onsubmit="return confirm('Are you sure you want to delete this order?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
                                     class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-4">
-                                    Delete Tracking
+                                    Delete Order
                                 </button>
                             </form>
                         @endif

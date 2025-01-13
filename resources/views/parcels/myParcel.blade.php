@@ -27,6 +27,7 @@
                                         <th class="py-2 px-4 border-b">Pickup Point</th>
                                         <th class="py-2 px-4 border-b">Phone Number</th>
                                         <th class="py-2 px-4 border-b">Delivery Address</th>
+                                        <th class="py-2 px-4 border-b">Deliverer Phone Number</th>
                                         <th class="py-2 px-4 border-b">Status</th>
                                     </tr>
                                 </thead>
@@ -37,7 +38,23 @@
                                             <td class="py-2 px-4 border-b">{{ $parcel->pickup_point }}</td>
                                             <td class="py-2 px-4 border-b">{{ $parcel->phone_number }}</td>
                                             <td class="py-2 px-4 border-b">{{ $parcel->delivery_address }}</td>
-                                            <td class="py-2 px-4 border-b">{{ $parcel->status }}</td>
+                                            <td class="py-2 px-4 border-b">
+                                                @if ($parcel->status != 'pending')
+                                                    {{ $parcel->deliverer ? $parcel->deliverer->phone_number : 'No deliverer assigned' }}
+                                                @else
+                                                    No deliverer assigned
+                                                @endif
+                                            </td>
+                                            <td class="py-2 px-4 border-b">
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                                    {{ $parcel->status === 'pending' ? 'bg-yellow-100 text-yellow-800' : '' }}
+                                                    {{ $parcel->status === 'picked_up' ? 'bg-blue-100 text-blue-800' : '' }}
+                                                    {{ $parcel->status === 'out_for_delivery' ? 'bg-purple-100 text-purple-800' : '' }}
+                                                    {{ $parcel->status === 'delivered' ? 'bg-green-100 text-green-800' : '' }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $parcel->status)) }}
+                                                </span>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
