@@ -220,11 +220,22 @@ class CatalogController extends Controller
             'phone' => $validatedData['phone'],
             'email' => $validatedData['email'],
             'receipt_path' => $filePath ?? null,
+            'status' => 'Completed', // Default status
         ]);
     
         // Redirect or return a response
         return redirect()->route('marketplace.marketindex')->with('success', 'Order confirmed successfully!');
     }
+
+    public function purchaseHistory()
+    {
+        // Fetch all orders
+        $orders = Order::all();
+
+        // Pass the orders to the view
+        return view('purchaseHistory', compact('orders'));
+    }
+
     
 
     public function removeFromCart(Request $request, $id)
