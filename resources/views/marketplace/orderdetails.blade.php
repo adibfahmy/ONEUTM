@@ -105,6 +105,7 @@
             <div class="mb-4 file-upload">
                 <label for="receipt" class="file-upload-label">Upload Receipt (JPG, PNG, JPEG, GIF):</label>
                 <input type="file" id="receipt" name="receipt" accept="image/jpeg, image/png, image/gif" required>
+                <h2 class="text-xl font-bold">Bank Account : 1234567891011</h2>
             </div>
 
             <div class="mt-6">
